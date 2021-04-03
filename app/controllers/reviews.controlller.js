@@ -41,17 +41,63 @@ exports.findOne = (req, res) => {
 };
 
 exports.update = (req, res) => {
-  
+  const id =req.params.id;
+  Review.update(req.body,{
+      where: {idreviews: id}
+  })
+  .then(num => {
+      if(num == 1){
+          res.send({
+            message: "Review updated!"
+          });
+      } else {
+          res.send({
+              message: "Cannot update Review!!"
+          });
+      }
+  })
+  .catch(err =>{
+      res.status(500).send({
+          message: "Error updating Review (500)"
+      });
+  });
 };
 
 exports.delete = (req, res) => {
-  
+    const id = req.params.id;
+    Review.destroy({
+        where: {idreviews:id}
+    })
+    .then(num => {
+        if(num==1){
+            res.send({
+                message: `Review with id ${id} was deleted.`
+            });
+        }else{
+            res.send({
+                message: "Cannot delete review"
+            });
+        }
+    })
+    .catch(err=>{
+        res.status(500).send({
+            message: "Error while deleting review (500)"
+        });
+    });
 };
 
 exports.deleteAll = (req, res) => {
-  
-};
-
-exports.findAllPublished = (req, res) => {
-  
+    Review.destroy({
+        where: {},
+        truncate: false
+      })
+        .then(nums => {
+          res.send({ message: `${nums} Reviews were deleted.` });
+        })
+        .catch(err => {
+          res.status(500).send({
+            message:
+              err.message || "An error occurred while removing all Reviews (500)."
+          });
+        });
 };

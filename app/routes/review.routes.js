@@ -6,5 +6,11 @@ module.exports = app =>{
 
     router.get("/:id", reviews.findOne);
 
+    router.put("/:id", reviews.update);
+
+    router.delete("/:id", reviews.delete)
+
+    router.delete("/", reviews.deleteAll)
+
     app.use('/api/reviews', router);
 }
