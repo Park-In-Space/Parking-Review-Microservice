@@ -1,34 +1,37 @@
-module.exports = (sequelize, DataTypes) => {
+module.exports = (sequelize, Sequelize) => {
     const Review = sequelize.define(
 
         'reviews',
         {
             idreviews:{
-                type: DataTypes.INT,
+                type: Sequelize.INTEGER,
                 allowNull: false,
                 primaryKey: true,
             },
             parking_id:{
-                type: DataTypes.INT,
+                type: Sequelize.INTEGER,
                 allowNull: false,
             },
             user_id:{
-                type: DataTypes.INT,
+                type: Sequelize.INTEGER,
                 allowNull: false,
             },
             review_date:{
-                type: DataTypes.DATE,
+                type: Sequelize.DATE,
                 allowNull: true,
             },
             review_calification:{
-                type: DataTypes.INT,
+                type: Sequelize.INTEGER,
                 allowNull: false,
             },
             review_comment:{
-                type: DataTypes.TINYTEXT,
+                type: Sequelize.TEXT('tiny'),
                 allowNull: true,
             },
+        },{
+            timestamps: false
         }
+        
     );
     return Review;
 }

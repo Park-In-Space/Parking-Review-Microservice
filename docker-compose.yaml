@@ -1,15 +1,23 @@
 version: '3.8'
 
+networks: 
+  app-tier:
+    driver: bridge
 services: 
-  mysqldb:
+  mysql:
     image: mysql
     restart: always
-    env_file: ./.env
     environment:
-      MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
-      MYSQL_DATABASE: $MYSQL_DATABASE
+      - MYSQL_HOST=localhost
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=pis_review_db
+      - 
     ports:
-      - $MYSQL_LOCAL_PORT:$MYSQL_DOCKER_PORT
+      - '3307:3306'
+    expose:
+      - 3307
     volumes: 
       - db-config:/etc/mysql
       - db-data:/var/lib/mysql
@@ -21,9 +29,8 @@ services:
       dockerfile: ./Dockerfile
     image: node-mysql-app
     depends_on:
-      - mysqldb
-    stdin_open: true
-    tty: true
+      - mysql
+    command: ["mysql:3307"]
 
 volumes: 
   db-config:

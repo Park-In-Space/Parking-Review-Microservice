@@ -1,18 +1,31 @@
-require('dotenv').config();
-const express = require('express');
-require('./db/sequelize');
+const express = require("express");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+
 const app = express();
-const {review: ReviewModel} = require('./db/sequelize');
-app.route('/').get(async(req,res)=>{
-    try{
-        const reviews = await ReviewModel.findAll({logging:console.log});
-        res.send(reviews)
-    }catch(e){
-        throw e;
-    }
+
+var corsOptions = {
+  origin: "http://localhost:3002"
+};
+
+app.use(cors(corsOptions));
+
+app.use(bodyParser.json());
+
+app.use(bodyParser.urlencoded({ extended: true }));
+
+const db = require("./app/models");
+
+db.seq.sync();
+// simple route
+app.get("/", (req, res) => {
+  res.json({ message: "Running" });
 });
 
-const port = process.env.NODE_JS_LOCAL_PORT || 3002;
-app.listen(port, ()=>{
-    console.log(`Worker: process ${process.pid} is up on port ${port}`);
-})
+require("./app/routes/review.routes")(app);
+
+// set port, listen for requests
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}!!`);
+});
