@@ -1,8 +1,8 @@
 module.exports = {
-    host: "host.docker.internal",
+    host: "mysql",
     username: "root",
-    password: "root",
-    database: "pis_review_db",
+    password: "Password1!",
+    database: "review_db",
     dialect: "mysql",
     define:{
       timestamps: false

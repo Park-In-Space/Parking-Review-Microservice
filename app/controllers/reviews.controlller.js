@@ -3,12 +3,7 @@ const Review = db.review;
 const Op = db.Sequelize.Op;
 
 exports.create = (req,res) =>{
-    if(!req.body.title){
-        res.status(400).send({
-            message: "Content cannot be empty!!"
-        });
-        return;
-    }
+    
 
     const review = {
         idreviews: req.body.idreviews,

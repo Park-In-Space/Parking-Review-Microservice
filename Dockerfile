@@ -1,14 +1,17 @@
 FROM node:15
 
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+RUN mkdir -p /app
+WORKDIR /app
+RUN apt-get update && apt-get install -y netcat
 
 
-COPY package.json /usr/src/app/
+COPY package.json /app/
 RUN npm install
 
-COPY . /usr/src/app
+COPY . /app
 
-EXPOSE 3001
+EXPOSE 3002
 
 CMD [ "npm", "start" ]
+
+

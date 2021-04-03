@@ -1,0 +1,29 @@
+version: '3.8'
+
+networks: 
+  app-tier:
+    driver: bridge
+services: 
+  mysql:
+    image: mysql
+    restart: always
+    command: mysqld --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_DATABASE: review_db
+      MYSQL_PASSWORD: Password1!
+      MYSQL_ROOT_PASSWORD: Password1!
+    ports:
+      - '3307:3307'
+    volumes: 
+      - db-data:/var/lib/mysql
+
+  app:
+    build: .    
+    ports:
+      - "3002:3002"
+    depends_on:
+      - mysql
+
+volumes: 
+  db-config:
+  db-data:
