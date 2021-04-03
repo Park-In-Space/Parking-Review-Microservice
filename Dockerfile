@@ -1,12 +1,12 @@
 FROM node:15
 
-WORKDIR /
+WORKDIR /app
 
 COPY /package.json .
 
 RUN npm install
 
-COPY / .
+COPY /app .
 
 EXPOSE 3002
 
