@@ -1,7 +1,0 @@
-sudo docker run -p 3002:3002 -e DB_HOST=host.docker.internal -e DB_PORT=3306 -e DB_USER=root -e DB_PASSWORD=root -e DB_NAME=pis_review_db -e URL=0.0.0.0:3002 parking_review
-
-
-
-
-
-
