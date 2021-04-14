@@ -6,7 +6,6 @@ exports.create = (req,res) =>{
     
 
     const review = {
-        idreviews: req.body.idreviews,
         parking_id: req.body.parking_id,
         user_id: req.body.user_id,
         review_date: req.body.review_date,   
@@ -43,7 +42,7 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
   const id =req.params.id;
   Review.update(req.body,{
-      where: {idreviews: id}
+      where: {idreview: id}
   })
   .then(num => {
       if(num == 1){
@@ -66,7 +65,7 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
     const id = req.params.id;
     Review.destroy({
-        where: {idreviews:id}
+        where: {idreview:id}
     })
     .then(num => {
         if(num==1){

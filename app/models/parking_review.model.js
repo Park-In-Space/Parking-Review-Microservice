@@ -3,10 +3,10 @@ module.exports = (sequelize, Sequelize) => {
 
         'reviews',
         {
-            idreviews:{
+            idreview:{
                 type: Sequelize.INTEGER,
-                allowNull: false,
                 primaryKey: true,
+                autoIncrement: true,
             },
             parking_id:{
                 type: Sequelize.INTEGER,
