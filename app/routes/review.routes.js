@@ -12,5 +12,7 @@ module.exports = app =>{
 
     router.delete("/", reviews.deleteAll)
 
+    router.get("/", reviews.getAll);
+
     app.use('/api/reviews', router);
 }
