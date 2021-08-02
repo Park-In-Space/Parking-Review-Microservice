@@ -1,14 +1,13 @@
 module.exports = {
-    host: "3.14.68.142",
-    port: 3307,
-    username: "root",
-    password: "Password1!",
+    host: "ps-review-ms.cwqt7dh9rz9y.us-east-2.rds.amazonaws.com",
+    port: "3306",
+    username: "admin",
+    password: "parkinspace",
     database: "review_db",
     dialect: "mysql",
     define:{
       timestamps: false
     },
-    storage: '/var/lib/mysql',
     pool: {
       max: 5,
       min: 0,

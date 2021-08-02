@@ -1,7 +1,6 @@
 const db = require("../models");
 const Review = db.review;
 const Op = db.Sequelize.Op;
-
 exports.create = (req,res) =>{
     
 

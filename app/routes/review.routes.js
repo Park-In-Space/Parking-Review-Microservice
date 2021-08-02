@@ -1,5 +1,5 @@
 module.exports = app =>{
-    const reviews = require("../controllers/reviews.controlller.js");
+    const reviews = require("../controllers/reviews.controller.js");
     var router = require("express").Router();
 
     router.post("/", reviews.create);
